@@ -1,18 +1,20 @@
-import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Unique} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Unique ,OneToMany} from "typeorm";
 import { MinLength, IsNotEmpty, IsEmail} from "class-validator"
 import * as bcriptjs from "bcryptjs"
+import { Roles_Users } from "./Roles_Users";
 @Entity()
-@Unique(["username"])
+@Unique("unique",["username"])
 
-export class User {
+export class Users {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('increment')
     id: number;
 
     @IsEmail()
     @Column()
     @MinLength(6)
     @IsNotEmpty()
+    // @Unique({ unique: true })
     username: string;
 
     @Column()
@@ -20,9 +22,9 @@ export class User {
     @IsNotEmpty()
     password: string;
 
-    @Column()
-    @IsNotEmpty()
-    role: string;
+    // @Column()
+    // @IsNotEmpty()
+    // role: string;
     
     @Column()
     @CreateDateColumn()
@@ -31,7 +33,10 @@ export class User {
     @Column()
     @UpdateDateColumn()
     updateAt: Date;
-
+    
+    @OneToMany(() => Roles_Users, roles_users => roles_users.user)
+    public users_roles!: Roles_Users[];
+    
     hashpassword():void{
        const salt =  bcriptjs.genSaltSync(10)
        this.password = bcriptjs.hashSync(this.password,salt)

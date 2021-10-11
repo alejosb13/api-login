@@ -1,3 +1,4 @@
 export default {
-    JWTSecret: "MyKey"
+    JWTSecret: "MyKey",
+    validationOpt:{"validationError":{"target":false,"value":false}}
 }

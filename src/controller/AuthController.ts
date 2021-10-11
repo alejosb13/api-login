@@ -1,6 +1,6 @@
 import { getRepository } from "typeorm"
 import { Request, Response } from "express"
-import { User } from "../entity/User"
+import { Users } from "../entity/Users"
 import * as Jwt  from "jsonwebtoken";
 import config from "../config/config"
 import {  validate } from "class-validator";
@@ -15,8 +15,8 @@ export default class AuthController {
             return res.status(400).json({"message": "Username & Password are required !"})
         }
         
-        const userRepository = getRepository(User)
-        let user:User;
+        const userRepository = getRepository(Users)
+        let user:Users;
         
         try {
             user = await userRepository.findOneOrFail({ where : {username}})
@@ -42,8 +42,8 @@ export default class AuthController {
             return res.status(400).json({"message": "Old password & new password are required !"})
         }
         
-        const userRepository = getRepository(User)
-        let user:User;
+        const userRepository = getRepository(Users)
+        let user:Users;
         
         try {
             user = await userRepository.findOneOrFail({ where : {id}})            

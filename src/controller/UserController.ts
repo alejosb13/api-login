@@ -1,97 +1,218 @@
-import { getRepository } from "typeorm";
-import { NextFunction, Request, Response } from "express";
-import { User } from "../entity/User";
+import { getRepository,getManager } from "typeorm";
+import { Request, Response } from "express";
+import { Users } from "../entity/Users";
+import { Roles_Users } from "../entity/Roles_Users";
+import { Roles } from "../entity/Roles";
+import config from "../config/config"
+// import { User } from "../entity/User";
 import {  validate } from "class-validator";
 
-export default class UserController {
+class UserController {
 
-    static getAll = async (req:Request, res:Response)=>{
-        const userRepository = getRepository(User)
+    async getAll (req:Request, res:Response){
+        // const userRepository = getRepository(Users)
         
         try {
-            const users:User[] = await userRepository.find()
+            
+            const users:Users[] =  await getManager()
+                .createQueryBuilder(Users,"user")
+                .innerJoin(Roles_Users, 'roles_users', 'user.id = roles_users.id_user') //INNER JOIN table2 t2 ON t1.id = t2.id
+                .innerJoin(Roles, 'roles', 'roles_users.id_role = roles.id') //INNER JOIN table2 t2 ON t1.id = t2.id
+                .select("*")
+                .getRawMany();
         
+                    
             if(users.length > 0){
                 res.send(users)
             }else{
                 return res.status(400).json({"message":"No result"})
             }
         } catch (error) {
+            console.log(error);
             return res.status(400).json({"message":"No result"})
         }
     }
     
-    static getById =  async (req:Request, res:Response)=>{
-        const {id} =  req.params
-        const userRepository = getRepository(User)
+    async getById (req:Request, res:Response){
+        const { id } =  req.params
+        // const userRepository = getRepository(Users)
         
         try {
-            const user:User = await userRepository.findOneOrFail(id)
-                
+            // const user:Users = await userRepository.findOneOrFail(id)
+            const user:Users =  await getManager()
+            .createQueryBuilder(Users,"user")
+            .innerJoin(Roles_Users, 'roles_users', 'user.id = roles_users.id_user') //INNER JOIN table2 t2 ON t1.id = t2.id
+            .innerJoin(Roles, 'roles', 'roles_users.id_role = roles.id') //INNER JOIN table2 t2 ON t1.id = t2.id
+            .where("user.id = :id", { id })
+            .select("*")
+            .getRawOne();
+            
             res.send(user)
         } catch (error) {
             return res.status(400).json({"message":"No result"})
         }
     }
 
-    static newUSer =  async (req:Request, res:Response)=>{
+    async newUSer (req:Request, res:Response){
         const {username, password, role } =  req.body
+        let user:Users
+        let roles:Roles
+        let roles_user:Roles_Users
+        
         try {
-            const user = new User();
+            /*** USER ***/
+            const userRepository = getRepository(Users)
+            user = new Users();
             user.username = username
             user.password = password
-            user.role = role
+            // user.role = role -> debe ser entero
             
-            const validationOpt = {validationError:{target:false,value:false}}
-            const errors = await validate(user,validationOpt)
+            // const validationOpt = {validationError:{target:false,value:false}}
+            const errors = await validate(user,config.validationOpt)
+            
+            if(errors.length > 0) return res.status(400).json(errors)
+            
+            user.hashpassword()
+            await userRepository.save(user)
+        } catch (error) {
+            console.log(error);
+            return res.status(409).json({"message":"Username exist!"})
+        }
+        
+        try {
+            /*** ROle ***/
+            const roleRepository = getRepository(Roles)
+            roles = new Roles();
+            roles.role = role 
+            roles.display_name = "test"
+            const errorsrole = await validate(roles,config.validationOpt)
+            
+            if(errorsrole.length > 0) return res.status(400).json(errorsrole)
+            
+            await roleRepository.save(roles)
+        } catch (error) {
+            return res.status(409).json({"message":"Role exist!"})   
+        }
+        
+        
+        try {
+            /*** User_Role ***/
+            const rolesUserRepository = getRepository( Roles_Users )
+            roles_user = new Roles_Users()
+            roles_user.role = roles
+            roles_user.user = user
+            
+            const errorsroles_user = await validate(roles,config.validationOpt)
+            if(errorsroles_user.length > 0) return res.status(400).json(errorsroles_user)
+            
+            await rolesUserRepository.save(roles_user)
+        } catch (error) {
+            return res.status(409).json({"message":"Can not relate User with Role"})   
+        }
+        
+        res.send("User Created")
+    }
+
+    async editUser (req:Request, res:Response){
+        const { id } =  req.params
+        const body =  req.body
+        const username =  body.username || false
+        const role =  body.role || false
+        
+        if(username){
+            const userRepository = getRepository(Users)
+            let  user:Users;
+            
+            try {    
+                user = await userRepository.findOneOrFail(id)   
+                user.username = username
+                // console.log(user);
+                
+                // user.role = role
+        
+            } catch (error) {
+                return res.status(404).json({"message":"User Not found"})
+            }
+            
+
+            const errors = await validate(user,config.validationOpt)
             if(errors.length > 0){
                 return res.status(400).json(errors)
             }
             
-            const userRepository = getRepository(User)
-            user.hashpassword()
-            await userRepository.save(user)
-            
-        } catch (error) {
-            return res.status(409).json({"message":"Username exist!"})
+            try {
+                await userRepository.save(user)   
+            } catch (error) {
+                return res.status(409).json({"message":"Username already in use"})
+            }
         }
-        res.send("User Created")
+        
+        /*** edited Role  ***/
+        
+        if(role){
+            const roles_UserRepository = getRepository(Roles_Users)
+            let  roles_user:Roles_Users;
+            try {    
+                // roles_user = await roles_UserRepository.findOneOrFail()   
+                roles_user = await roles_UserRepository.findOne({ where:{ id_user: id }});
+                roles_user.id_role = role
+                // console.log(user);
+                
+                // user.role = role
+        
+            } catch (error) {
+                return res.status(404).json({"message":"Role Not found"})
+            }
+            
+            const errors_roles_user = await validate(roles_user,config.validationOpt)
+            if(errors_roles_user.length > 0){
+                return res.status(400).json(errors_roles_user)
+            }
+            
+            try {
+                await roles_UserRepository.save(roles_user)   
+            } catch (error) {
+                return res.status(409).json({"message":"Role already in use"})
+            } 
+        }
+        
+        if(username && role){
+            res.send("Username & Role edited") 
+        }else if(role){
+            res.send("Role edited") 
+        }else if (username) {
+            res.send("User edited")
+        }else{
+            return res.status(409).json({"message":"Not params"})
+        }
+        
     }
-
-    static editUser =  async (req:Request, res:Response)=>{
+    
+    async deleteUser (req:Request, res:Response) {
         const { id } =  req.params
-        const {username, role } =  req.body
-        const userRepository = getRepository(User)
-        let  user:User;
+        const userRepository = getRepository(Users)
+        let  user:Users;
+        
+        const roles_UserRepository = getRepository(Roles_Users)
+        let  roles_user:Roles_Users;
         
         try {    
-            user = await userRepository.findOneOrFail(id)   
-            user.username = username
-            user.role = role
+            // roles_user = await roles_UserRepository.findOneOrFail()   
+            roles_user = await roles_UserRepository.findOne({ where:{ id_user: id }});
+
+            // console.log(user);
+            
+            // user.role = role
     
         } catch (error) {
-            return res.status(404).json({"message":"User Not found"})
-        }
-        
-        const validationOpt = {validationError:{target:false,value:false}}
-        const errors = await validate(user,validationOpt)
-        if(errors.length > 0){
-            return res.status(400).json(errors)
+            return res.status(404).json({"message":"Role Not found"})
         }
         
         try {
-            await userRepository.save(user)   
+            await roles_UserRepository.delete(roles_user.id)   
         } catch (error) {
-            return res.status(409).json({"message":"Username already in use"})
-        }
-        
-        res.send("User edited")
-    }
-    
-    static deleteUser =  async (req:Request, res:Response)=>{
-        const { id } =  req.params
-        const userRepository = getRepository(User)
-        let  user:User;
+            return res.status(409).json({"message":"Error delete relationship!"})
+        } 
         
         try {    
             user = await userRepository.findOneOrFail(id)   
@@ -102,10 +223,12 @@ export default class UserController {
         try {
             await userRepository.delete(id)   
         } catch (error) {
-            return res.status(409).json({"message":"Error !"})
+            return res.status(409).json({"message":"Error delete User !"})
         }
         
         res.send("User Deleted")
     }
     
 }
+
+export default new UserController();

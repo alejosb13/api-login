@@ -10,7 +10,8 @@ const PORT = process.env.PORT || 3000
 
 
 createConnection().then(async connection => {
-
+    // console.log(connection);
+    
     // create express app
     const app = express();
     app.use(bodyParser.json());
