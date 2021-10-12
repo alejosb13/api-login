@@ -15,7 +15,7 @@
 						"header": [
 							{
 								"key": "auth",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJwZXBlMTY3MzciLCJpYXQiOjE2MzMzOTcyNTAsImV4cCI6MTYzMzQwMDg1MH0.liJtLbnYA2BPOt5pBF2ClpKIZTKKPdvbJArrR4l8Iug",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDAwMTY1MywiZXhwIjoxNjM0MDA1MjUzfQ.JMGndKmXeLakIplq5fmOm_CBnfa3JX-VLBJLyqySyRE",
 								"type": "text"
 							}
 						],
@@ -47,12 +47,12 @@
 						"header": [
 							{
 								"key": "auth",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJwZXBlMTY3MzciLCJpYXQiOjE2MzMzOTI4OTQsImV4cCI6MTYzMzM5NjQ5NH0.pB6C6OPURC9T_oOx0An2oB6CDv9sK6KKP05vpIN7dCc",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDAwMTY1MywiZXhwIjoxNjM0MDA1MjUzfQ.JMGndKmXeLakIplq5fmOm_CBnfa3JX-VLBJLyqySyRE",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/users/5",
+							"raw": "http://localhost:3000/users/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -60,7 +60,7 @@
 							"port": "3000",
 							"path": [
 								"users",
-								"5"
+								"1"
 							]
 						}
 					},
@@ -73,13 +73,13 @@
 						"header": [
 							{
 								"key": "auth",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJwZXBlMTY3MzciLCJpYXQiOjE2MzMzOTcyNTAsImV4cCI6MTYzMzQwMDg1MH0.liJtLbnYA2BPOt5pBF2ClpKIZTKKPdvbJArrR4l8Iug",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDAwMTY1MywiZXhwIjoxNjM0MDA1MjUzfQ.JMGndKmXeLakIplq5fmOm_CBnfa3JX-VLBJLyqySyRE",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"Alejad16\",\r\n    \"password\" : \"123456\",\r\n    \"role\" : \"reader\"\r\n}",
+							"raw": "{\r\n    \"username\" : \"carlos@gmail.com\",\r\n    \"password\" : \"123456\",\r\n    \"role\" : \"admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -107,13 +107,13 @@
 						"header": [
 							{
 								"key": "auth",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJhbGVqbzEzIiwiaWF0IjoxNjMzNTQ5NDAyLCJleHAiOjE2MzM1NTMwMDJ9.vcq62rwmTfp5l2nHb0hRzA1y6bPo3HlXjZVks3wWFZM",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDAwMTY1MywiZXhwIjoxNjM0MDA1MjUzfQ.JMGndKmXeLakIplq5fmOm_CBnfa3JX-VLBJLyqySyRE",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"alejo16@hotmail.com\",\r\n    \"role\" : \"admin\"\r\n}",
+							"raw": "{\r\n    \"username\" : \"alejo144@gmail.com\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -121,7 +121,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/5",
+							"raw": "http://localhost:3000/users/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -129,7 +129,7 @@
 							"port": "3000",
 							"path": [
 								"users",
-								"5"
+								"1"
 							]
 						}
 					},
@@ -142,7 +142,7 @@
 						"header": [
 							{
 								"key": "auth",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJhbGVqbzEzIiwiaWF0IjoxNjMzNTQ5NDAyLCJleHAiOjE2MzM1NTMwMDJ9.vcq62rwmTfp5l2nHb0hRzA1y6bPo3HlXjZVks3wWFZM",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDAwMTY1MywiZXhwIjoxNjM0MDA1MjUzfQ.JMGndKmXeLakIplq5fmOm_CBnfa3JX-VLBJLyqySyRE",
 								"type": "text"
 							}
 						],
@@ -151,7 +151,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/10",
+							"raw": "http://localhost:3000/users/9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -159,7 +159,7 @@
 							"port": "3000",
 							"path": [
 								"users",
-								"10"
+								"9"
 							]
 						}
 					},
@@ -177,7 +177,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"username\": \"alejo13\",\r\n        \"password\": \"123456\"\r\n    }",
+							"raw": "    {\r\n        \"username\": \"carlos@gmail.com\",\r\n        \"password\": \"123456\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -206,7 +206,7 @@
 						"header": [
 							{
 								"key": "auth",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInVzZXJuYW1lIjoiQWxlamFkMTYiLCJpYXQiOjE2MzMzOTczMjAsImV4cCI6MTYzMzQwMDkyMH0.hQ-6nzEVuNt9Yyi3cQsKMOg2G5wuuL5dNNdQfXe6hvQ",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjExLCJ1c2VybmFtZSI6ImNhcmxvc0BnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjUsImlkX3JvbGUiOjEwLCJpZF91c2VyIjoxMX1dLCJpYXQiOjE2MzQwMDQ3OTQsImV4cCI6MTYzNDAwODM5NH0.w66Lnk7udPY-zhcbkW2mf0ef8upTnzn6ByfVs7ujHFY",
 								"type": "text"
 							},
 							{
@@ -218,7 +218,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"oldPassword\" : \"holamundo\",\r\n    \"newPassword\" : \"123456\"\r\n\r\n}",
+							"raw": "{\r\n    \"oldPassword\" : \"123456\",\r\n    \"newPassword\" : \"alejo1\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -5,10 +5,8 @@ import * as Jwt  from "jsonwebtoken";
 import config from "../config/config"
 import {  validate } from "class-validator";
 
-export default class AuthController {
-    constructor() {}
-    
-    static login = async (req: Request,res: Response) => {
+class AuthController {
+    async login (req: Request,res: Response){
         const { username, password } = req.body
         
         if(!(username && password)){
@@ -19,23 +17,33 @@ export default class AuthController {
         let user:Users;
         
         try {
-            user = await userRepository.findOneOrFail({ where : {username}})
+            user = await userRepository.findOne({ 
+                where : {username},
+                relations: ["users_roles"],
+            })
             
-            if(!user.checkPassword(password)) return res.status(400).json({"message": "Username or Password are incorrect"}) 
+            // console.log(user);
+            
+            if(user.users_roles.length > 0){
+                if(!user.checkPassword(password)) return res.status(400).json({"message": "Username or Password are incorrect"}) 
+            }else{
+                return res.status(400).json({"message": "User does not have a role"})
+            }
+            
             
         } catch (error) {
             return res.status(400).json({"message": "Username or Password incorrect"})
-            
         }
         
-        const token = Jwt.sign({id:user.id,username: user.username},config.JWTSecret,{expiresIn:"1h"})
+        let users_roles = user.users_roles
+        const token = Jwt.sign({userID:user.id,username: user.username, roles: users_roles},config.JWTSecret,{expiresIn:"1h"})
         
         res.json({"message": "Ok!", token})
     
     }
 
-    static changePassword = async (req: Request,res: Response) => {
-        const { id } = res.locals.JWTPayload
+    async changePassword (req: Request,res: Response){
+        const { userID } = res.locals.JWTPayload
         const { oldPassword, newPassword } = req.body
         
         if(!(oldPassword && newPassword)){
@@ -46,17 +54,20 @@ export default class AuthController {
         let user:Users;
         
         try {
-            user = await userRepository.findOneOrFail({ where : {id}})            
+            user = await userRepository.findOneOrFail({ where : {id:userID}})       
+
+                 
         } catch (error) {
             return res.status(400).json({"message": "Somenthing goes wrong!"})
         }
+        
+        console.log(user.checkPassword(oldPassword));
         
         if(!user.checkPassword(oldPassword)) return res.status(400).json({"message": "Check your old password!"}) 
         
         user.password = newPassword
         
-        const validationOpt = {validationError:{target:false,value:false}}
-        const errors = await validate(user,validationOpt)
+        const errors = await validate(user,config.validationOpt)
         if(errors.length > 0){
             res.send(errors)
         }
@@ -68,3 +79,5 @@ export default class AuthController {
     
     }
 }
+
+export default new AuthController();

@@ -13,9 +13,9 @@ import config from "../config/config"
         } catch (error) {
             return res.status(404).json({"messaje": "Not authorized!"})
         }
-        
-        const { id, username } = JWTPayload 
-        const newToken = Jwt.sign({id,username},config.JWTSecret,{expiresIn:"1h"})
+
+        const { userID, username, roles} = JWTPayload 
+        const newToken = Jwt.sign({userID,username,roles},config.JWTSecret,{expiresIn:"1h"})
         res.setHeader("token",newToken)
         next()
     }

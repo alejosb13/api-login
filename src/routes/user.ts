@@ -6,11 +6,11 @@ import { checkRole } from "../middlewares/role"
 const router = Router()
 
 
-router.get("/", UserController.getAll)  // regresa todos los usuarios 
-router.get("/:id", UserController.getById)  // regresa la info de un usuario
-router.post("/", UserController.newUSer)  // Crea un usuario
-router.patch("/:id", UserController.editUser)  // Edita un usuario
-router.delete("/:id", UserController.deleteUser)  // Elimina un usuario
+router.get("/",[checkJWT, checkRole(["Administrator","User"])], UserController.getAll)  // regresa todos los usuarios 
+router.get("/:id",[checkJWT, checkRole(["Administrator","User"])], UserController.getById)  // regresa la info de un usuario
+router.post("/",[checkJWT, checkRole(["Administrator","User"])], UserController.newUSer)  // Crea un usuario
+router.patch("/:id",[checkJWT, checkRole(["Administrator"])], UserController.editUser)  // Edita un usuario
+router.delete("/:id",[checkJWT, checkRole(["Administrator","User"])], UserController.deleteUser)  // Elimina un usuario
 
 // router.get("/",[checkJWT, checkRole(["admin"])], UserController.getAll)  // regresa todos los usuarios 
 // router.get("/:id",[checkJWT, checkRole(["admin"])], UserController.getById)  // regresa la info de un usuario
