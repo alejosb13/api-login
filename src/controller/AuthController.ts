@@ -7,6 +7,8 @@ import {  validate } from "class-validator";
 
 class AuthController {
     async login (req: Request,res: Response){
+        console.log(req.body);
+        
         const { username, password } = req.body
         
         if(!(username && password)){

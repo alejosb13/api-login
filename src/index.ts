@@ -19,7 +19,7 @@ createConnection().then(async connection => {
     app.use(helmet());
 
     // register express routes from defined application routes
-    app.use(routes)
+    app.use("/api",routes)
 
     // setup express app here
 
