@@ -15,18 +15,19 @@
 						"header": [
 							{
 								"key": "auth",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDAwMTY1MywiZXhwIjoxNjM0MDA1MjUzfQ.JMGndKmXeLakIplq5fmOm_CBnfa3JX-VLBJLyqySyRE",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjYsInVzZXJuYW1lIjoiYWxlam8xM0BnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjIsImlkX3JvbGUiOjEsImlkX3VzZXIiOjZ9XSwiaWF0IjoxNjM0Mzk2MTc5LCJleHAiOjE2MzQzOTk3Nzl9.i2Nh2KV5TjRWrrZVDPEU2bgQMCWidXZWyrAPGte92EI",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/users",
+							"raw": "http://localhost:3000/api/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"users"
 							],
 							"query": [
@@ -47,18 +48,19 @@
 						"header": [
 							{
 								"key": "auth",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDAwMTY1MywiZXhwIjoxNjM0MDA1MjUzfQ.JMGndKmXeLakIplq5fmOm_CBnfa3JX-VLBJLyqySyRE",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjYsInVzZXJuYW1lIjoiYWxlam8xM0BnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjIsImlkX3JvbGUiOjEsImlkX3VzZXIiOjZ9XSwiaWF0IjoxNjM0Mzk2MTc5LCJleHAiOjE2MzQzOTk3Nzl9.i2Nh2KV5TjRWrrZVDPEU2bgQMCWidXZWyrAPGte92EI",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/users/1",
+							"raw": "http://localhost:3000/api/users/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"users",
 								"1"
 							]
@@ -73,13 +75,13 @@
 						"header": [
 							{
 								"key": "auth",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDAwMTY1MywiZXhwIjoxNjM0MDA1MjUzfQ.JMGndKmXeLakIplq5fmOm_CBnfa3JX-VLBJLyqySyRE",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDQwMzIwNSwiZXhwIjoxNjM0NDA2ODA1fQ.zkiO-bgIEld8iuTv01emBXsbdjgppFskdqD4Q_G7vSY",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"carlos@gmail.com\",\r\n    \"password\" : \"123456\",\r\n    \"role\" : \"admin\"\r\n}",
+							"raw": "{\r\n    \"username\" : \"alejandroff@gmail.com\",\r\n    \"password\" : \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -87,14 +89,38 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/users",
+							"raw": "http://localhost:3000/api/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST-> UsersToRoles",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/roles/roletouser/12/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"roles",
+								"roletouser",
+								"12",
+								"6"
 							]
 						}
 					},
@@ -107,13 +133,13 @@
 						"header": [
 							{
 								"key": "auth",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDAwMTY1MywiZXhwIjoxNjM0MDA1MjUzfQ.JMGndKmXeLakIplq5fmOm_CBnfa3JX-VLBJLyqySyRE",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjYsInVzZXJuYW1lIjoiYWxlam8xM0BnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjIsImlkX3JvbGUiOjEsImlkX3VzZXIiOjZ9XSwiaWF0IjoxNjM0Mzk2MTc5LCJleHAiOjE2MzQzOTk3Nzl9.i2Nh2KV5TjRWrrZVDPEU2bgQMCWidXZWyrAPGte92EI",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"alejo144@gmail.com\"\r\n\r\n}",
+							"raw": "{\r\n    \"username\" : \"alejopepe@gmail.com\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -121,15 +147,16 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/1",
+							"raw": "http://localhost:3000/api/users/12",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"users",
-								"1"
+								"12"
 							]
 						}
 					},
@@ -142,7 +169,7 @@
 						"header": [
 							{
 								"key": "auth",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDAwMTY1MywiZXhwIjoxNjM0MDA1MjUzfQ.JMGndKmXeLakIplq5fmOm_CBnfa3JX-VLBJLyqySyRE",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjYsInVzZXJuYW1lIjoiYWxlam8xM0BnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjIsImlkX3JvbGUiOjEsImlkX3VzZXIiOjZ9XSwiaWF0IjoxNjM0Mzk2MTc5LCJleHAiOjE2MzQzOTk3Nzl9.i2Nh2KV5TjRWrrZVDPEU2bgQMCWidXZWyrAPGte92EI",
 								"type": "text"
 							}
 						],
@@ -151,15 +178,16 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/9",
+							"raw": "http://localhost:3000/api/users/12",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"users",
-								"9"
+								"12"
 							]
 						}
 					},
@@ -177,7 +205,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"username\": \"carlos@gmail.com\",\r\n        \"password\": \"123456\"\r\n    }",
+							"raw": "    {\r\n        \"username\": \"alejo144@gmail.com\",\r\n        \"password\": \"12345678\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -185,13 +213,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/auth/login",
+							"raw": "http://localhost:3000/api/auth/login",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"auth",
 								"login"
 							]
@@ -206,7 +235,7 @@
 						"header": [
 							{
 								"key": "auth",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjExLCJ1c2VybmFtZSI6ImNhcmxvc0BnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjUsImlkX3JvbGUiOjEwLCJpZF91c2VyIjoxMX1dLCJpYXQiOjE2MzQwMDQ3OTQsImV4cCI6MTYzNDAwODM5NH0.w66Lnk7udPY-zhcbkW2mf0ef8upTnzn6ByfVs7ujHFY",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjYsInVzZXJuYW1lIjoiYWxlam8xM0BnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjIsImlkX3JvbGUiOjEsImlkX3VzZXIiOjZ9XSwiaWF0IjoxNjM0Mzk2MTc5LCJleHAiOjE2MzQzOTk3Nzl9.i2Nh2KV5TjRWrrZVDPEU2bgQMCWidXZWyrAPGte92EI",
 								"type": "text"
 							},
 							{
@@ -218,7 +247,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"oldPassword\" : \"123456\",\r\n    \"newPassword\" : \"alejo1\"\r\n\r\n}",
+							"raw": "{\r\n    \"oldPassword\" : \"123456\",\r\n    \"newPassword\" : \"12345678\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -226,15 +255,174 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/auth/change-password",
+							"raw": "http://localhost:3000/api/auth/change-password",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+								"api",
 								"auth",
 								"change-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "POST-> Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDQwMzIwNSwiZXhwIjoxNjM0NDA2ODA1fQ.zkiO-bgIEld8iuTv01emBXsbdjgppFskdqD4Q_G7vSY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"role\": \"write\",\r\n        \"display_name\": \"Writer\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-> Roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDQwMzIwNSwiZXhwIjoxNjM0NDA2ODA1fQ.zkiO-bgIEld8iuTv01emBXsbdjgppFskdqD4Q_G7vSY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch -> Roles",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDQwMzIwNSwiZXhwIjoxNjM0NDA2ODA1fQ.zkiO-bgIEld8iuTv01emBXsbdjgppFskdqD4Q_G7vSY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"role\": \"writer\",\r\n        \"display_name\": \"Writer\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/roles/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"roles",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post -> UsersToRoles",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDQwMzIwNSwiZXhwIjoxNjM0NDA2ODA1fQ.zkiO-bgIEld8iuTv01emBXsbdjgppFskdqD4Q_G7vSY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/roles/roletouser/6/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"roles",
+								"roletouser",
+								"6",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-> UsersToRoles",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiYWxlam8xNDRAZ21haWwuY29tIiwicm9sZXMiOlt7ImlkIjoxLCJpZF9yb2xlIjoxLCJpZF91c2VyIjoxfV0sImlhdCI6MTYzNDQwMzIwNSwiZXhwIjoxNjM0NDA2ODA1fQ.zkiO-bgIEld8iuTv01emBXsbdjgppFskdqD4Q_G7vSY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/roles/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"roles",
+								"12"
 							]
 						}
 					},

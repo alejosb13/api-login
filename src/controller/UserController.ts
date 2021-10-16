@@ -54,7 +54,7 @@ class UserController {
     }
 
     async newUSer (req:Request, res:Response){
-        const {username, password, role } =  req.body
+        const {username, password } =  req.body
         let user:Users
         let roles:Roles
         let roles_user:Roles_Users
@@ -77,38 +77,7 @@ class UserController {
         } catch (error) {
             console.log(error);
             return res.status(409).json({"message":"Username exist!"})
-        }
-        
-        try {
-            /*** ROle ***/
-            const roleRepository = getRepository(Roles)
-            roles = new Roles();
-            roles.role = role 
-            roles.display_name = "test"
-            const errorsrole = await validate(roles,config.validationOpt)
-            
-            if(errorsrole.length > 0) return res.status(400).json(errorsrole)
-            
-            await roleRepository.save(roles)
-        } catch (error) {
-            return res.status(409).json({"message":"Role exist!"})   
-        }
-        
-        
-        try {
-            /*** User_Role ***/
-            const rolesUserRepository = getRepository( Roles_Users )
-            roles_user = new Roles_Users()
-            roles_user.role = roles
-            roles_user.user = user
-            
-            const errorsroles_user = await validate(roles,config.validationOpt)
-            if(errorsroles_user.length > 0) return res.status(400).json(errorsroles_user)
-            
-            await rolesUserRepository.save(roles_user)
-        } catch (error) {
-            return res.status(409).json({"message":"Can not relate User with Role"})   
-        }
+        }        
         
         res.send("User Created")
     }

@@ -7,7 +7,7 @@ import * as bcriptjs from "bcryptjs"
 
 export class Roles {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('increment')
     id: number;
 
     @Column()

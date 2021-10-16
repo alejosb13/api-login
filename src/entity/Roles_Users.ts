@@ -5,8 +5,8 @@ import { Users } from "./Users";
 @Entity()
 export class Roles_Users {
 
-    @PrimaryGeneratedColumn()
-    public id!: number;
+    @PrimaryGeneratedColumn('increment')
+    public id: number;
 
     @Column()
     public id_role!: number;
